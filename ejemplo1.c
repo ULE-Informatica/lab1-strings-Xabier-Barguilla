@@ -107,3 +107,97 @@ int main(int argc, char *argv[])
     
     return 0;
 }
+
+/*
+  gcc compilation:
+
+  - ejemplo1.c: In function 'gets_example_func':
+  - ejemplo1.c:34:16: warning: 'return' with a value, in function returning void
+          return 1;
+                  ^
+  - ejemplo1.c:30:6: note: declared here
+  void gets_example_func(void) {
+        ^~~~~~~~~~~~~~~~~
+  ejemplo1.c
+
+  gcc compilation with -std=c99
+
+  -ejemplo1.c:24:19: warning: missing terminating " character
+    const char* s1 = R"foo(
+                      ^
+  -ejemplo1.c:24:19: error: missing terminating " character
+    const char* s1 = R"foo(
+                      ^~~~~
+  -ejemplo1.c:24:18: error: 'R' undeclared here (not in a function)
+    const char* s1 = R"foo(
+                      ^
+  -ejemplo1.c:25:1: error: expected ',' or ';' before 'Hello'
+    Hello
+    ^~~~~
+  -ejemplo1.c:27:5: warning: missing terminating " character
+    )foo";
+        ^
+  -ejemplo1.c:27:5: error: missing terminating " character
+    )foo";
+        ^~
+  -ejemplo1.c: In function 'gets_example_func':
+  -ejemplo1.c:34:16: warning: 'return' with a value, in function returning void
+            return 1;
+                    ^
+  -ejemplo1.c:30:6: note: declared here
+    void gets_example_func(void) {
+          ^~~~~~~~~~~~~~~~~
+  -ejemplo1.c: In function 'main':
+  -ejemplo1.c:96:11: error: 's2' undeclared (first use in this function)
+        puts (s2);
+              ^~
+  -ejemplo1.c:96:11: note: each undeclared identifier is reported only once for each function it appears in
+
+
+  gcc compilation with -std=c99
+
+  -ejemplo1.c:24:19: warning: missing terminating " character
+  const char* s1 = R"foo(
+                   ^
+  -ejemplo1.c:24:19: error: missing terminating " character
+  const char* s1 = R"foo(
+                    ^~~~~
+  -ejemplo1.c:24:18: error: 'R' undeclared here (not in a function)
+  const char* s1 = R"foo(
+                    ^
+  -ejemplo1.c:25:1: error: expected ',' or ';' before 'Hello'
+  Hello
+  ^~~~~
+  -ejemplo1.c:27:5: warning: missing terminating " character
+  )foo";
+      ^
+  -ejemplo1.c:27:5: error: missing terminating " character
+  )foo";
+      ^~
+  -ejemplo1.c: In function 'gets_example_func':
+  -ejemplo1.c:34:16: warning: 'return' with a value, in function returning void
+          return 1;
+                  ^
+  -ejemplo1.c:30:6: note: declared here
+  void gets_example_func(void) {
+        ^~~~~~~~~~~~~~~~~
+  -ejemplo1.c: In function 'main':
+  -ejemplo1.c:96:11: error: 's2' undeclared (first use in this function)
+      puts (s2);
+            ^~
+  -ejemplo1.c:96:11: note: each undeclared identifier is reported only once for each function it appears in
+
+*/
+
+/*
+  g++ compilation:
+  
+  - ejemplo1.c: In function 'void gets_example_func()':
+  
+  - ejemplo1.c:34:16: error: return-statement with a value, in function returning 'void' [-fpermissive]
+         return 1;
+
+  - ejemplo1.c:69:23: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+     char *ptr_char  = "new string literal";
+
+*/
