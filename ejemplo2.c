@@ -86,12 +86,13 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 ==36813==ABORTING
 
 This error happens because we make a call to the free function. 
-This function deallocates the memory previously allocated by a call to calloc, malloc, or realloc. So we are trying to create a 
+This function deallocates the memory previously allocated by a call to calloc, malloc, or realloc. So we are trying to copy a string 
+in a location with no space allocated for it.
 
 */
 
 void optionFour(){
-    char *s = (char *) malloc(19);
+    char *s = (char *) malloc(18);
     strcpy(s,  "Welcome Sanitizer!");
     printf("string is: %s\n", s);
     free(s);
