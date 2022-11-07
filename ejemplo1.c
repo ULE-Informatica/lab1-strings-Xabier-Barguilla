@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
 
         
-    strcpy(key, argv[1]);  
+    //strcpy(key, argv[1]);  Removed due to sementation fault
     strcat(key, " = ");  
     strcat(key, argv[2]);
 
